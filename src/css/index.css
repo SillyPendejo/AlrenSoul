@@ -1,0 +1,42 @@
+* {
+  @apply box-border outline-none;
+}
+
+html {
+  @apply font-sans text-base text-default;
+  @media (max-width: 1280px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 12px;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: calc(16 * 100vw / 1440);
+  }
+
+  @media (min-width: 1680px) {
+    font-size: calc(15 * 100vw / 1440);
+  }
+
+  @media (min-width: 1920px) {
+    font-size: calc(14 * 100vw / 1440);
+  }
+
+  @media (min-width: 2560px) {
+    font-size: calc(13 * 100vw / 1440);
+  }
+
+  @media (min-width: 3840px) {
+    font-size: calc(12 * 100vw / 1440);
+  }
+}
