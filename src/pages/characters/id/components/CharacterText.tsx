@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
+import { TextInput } from '~components'
+
 const CharacterText = () => {
   const [edit, setEdit] = useState()
   return (
-    <div>CharacterInput</div>
+    <div></div>
   )
 }
 
