@@ -5,6 +5,6 @@ import TsConfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/altren-soul',
+  base: '/altren-soul/',
   plugins: [react(), WindiCSS(), TsConfigPaths()]
 })
