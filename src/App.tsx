@@ -6,7 +6,7 @@ import { default as Navigation } from './components/Navigation'
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='./'>
       <div className={'flex flex-1 w-100vw bg-black'}>
         <Navigation />
         <main className={'w-80wv flex flex-1  bg-black'}>
