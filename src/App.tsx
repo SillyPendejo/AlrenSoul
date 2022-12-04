@@ -7,9 +7,9 @@ import { default as Navigation } from './components/Navigation'
 const App = () => {
   return (
     <BrowserRouter>
-      <div className={'flex flex-1 w-100vw bg-black'}>
+      <div className={'flex flex-1 w-100vw bg-middleworld'}>
         <Navigation />
-        <main className={'w-80wv flex flex-1  bg-black'}>
+        <main className={'w-80wv flex flex-1'}>
           <MainRouter />
         </main>
       </div>

@@ -15,7 +15,7 @@ const CharactersListPage: React.FC<ICharactersListPageProps> = () => {
   const navigate = useNavigate()
 
   return (
-    <Page className={'pt-3 pl-10'}>
+    <Page className={'pt-3 pl-10 h-screen overflow-y-scroll'}>
       <div className={'w-full mt-5 flex text-lg flex-col gap-10 text-white mb-8'}>
         {characters.map(char => {
           const { id, name } = char
