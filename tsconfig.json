@@ -32,7 +32,7 @@
 
       "~components": ["src/components/EXPORT.ts"],
 
-      "~svg": ["src/elements/svg/EXPORT.tsx"],
+      "~svg": ["src/components/svg/EXPORT.tsx"],
       "~ui": ["src/elements/ui/EXPORT.ts"],
       "~ux": ["src/elements/ux/EXPORT.ts"],
 
