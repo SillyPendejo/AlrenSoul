@@ -24,10 +24,10 @@ const CharacterText: React.FC<ICharacterTextProps> = props => {
   const { setCharacterField, getCharacter } = useCharacter()
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && edit) {
       inputRef.current.focus()
     }
-  }, [inputRef.current])
+  }, [inputRef.current, edit])
 
   const handleStartEdit = () => {
     setEdit(true)
