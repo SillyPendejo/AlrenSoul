@@ -35,6 +35,7 @@ const useCharacter = () => {
     const characterId = uuid().slice(0, 8)
     const emptyCharacter: Character = {
       name: 'Новый персонаж',
+      race: 'Раса',
       id: characterId
     }
     const characterList = [...getCharacters(), emptyCharacter]
@@ -44,7 +45,22 @@ const useCharacter = () => {
     return characterId
   }
 
-  return { characters, getCharacters, addCharacter, getCharacter }
+  const setCharacterField = (id: string, value: string, valueKey: keyof Character) => {
+    const character = getCharacter(id)
+    const updatedCharacter = {
+      ...character,
+      [valueKey]: value
+    }
+    const updatedCharacterList = getCharacters().map(character => {
+      if (character.id === id) {
+        return updatedCharacter
+      }
+      return character
+    })
+    localStorage.setItem('AltrenCharacterList', JSON.stringify(updatedCharacterList))
+  }
+
+  return { characters, getCharacters, addCharacter, getCharacter, setCharacterField }
 }
 
 export default useCharacter

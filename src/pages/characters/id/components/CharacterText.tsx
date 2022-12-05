@@ -1,34 +1,82 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useState, useRef, useEffect } from 'react'
+import { useCharacter } from '~hooks'
 import cls from 'classnames'
 
 import { TextInput } from '~components'
 import Icon from '~svg'
+import { Character } from '~types'
 
 export interface ICharacterTextProps {
   className: string
   characterId: string
-  value: string
-  valueKey: string
+  initialValue: string
+  valueKey: keyof Character
   label: string
 }
 
 const CharacterText: React.FC<ICharacterTextProps> = props => {
-  const { className, characterId, value, label } = props
+  const { className, characterId, initialValue, valueKey, label } = props
   const [edit, setEdit] = useState(false)
-  const [textValue, setTextValue] = useState(value)
+  const [textValue, setTextValue] = useState(initialValue)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const { setCharacterField, getCharacter } = useCharacter()
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [inputRef.current])
 
   const handleStartEdit = () => {
     setEdit(true)
   }
 
   const handleEndEdit = () => {
+    setCharacterField(characterId, textValue, valueKey)
     setEdit(false)
+  }
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    switch (event.key) {
+      case 'Enter':
+        event.preventDefault()
+        handleEndEdit()
+        break
+      case 'Escape':
+        event.preventDefault()
+        const resetValue = getCharacter(characterId)?.[valueKey] ?? initialValue
+        setEdit(false)
+        setTextValue(resetValue)
+    }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { currentTarget } = event
     const { value } = currentTarget
     setTextValue(value)
+  }
+
+  const renderText = () => {
+    if (edit) {
+      return (
+        <>
+          <TextInput
+            className={cls('w-50 h-12 border-b-1 border-white mt-0.5', className)}
+            value={textValue}
+            inputRef={inputRef}
+            onKeyDown={handleKeyDown}
+            onChange={handleChange}
+          />
+          <Icon
+            className={cls('cursor-pointer text-emerald-500 h-8 w-8 ml-2 hover:(scale-big)', { 'hidden ': !edit })}
+            icon={'Check'}
+            onClick={handleEndEdit}
+          />
+        </>
+      )
+    }
+    return
   }
 
   return (
@@ -41,9 +89,10 @@ const CharacterText: React.FC<ICharacterTextProps> = props => {
       </div>
       <div className={cls('flex w-fit items-end')}>
         <TextInput
-          className={cls('max-w-160 h-12', { 'border-b-1 border-white': edit, 'select-none': !edit }, className)}
+          className={cls('w-50 h-12 border-b-1 border-white mt-0.5', { 'hidden ': !edit }, className)}
           value={textValue}
-          disabled={!edit}
+          inputRef={inputRef}
+          onKeyDown={handleKeyDown}
           onChange={handleChange}
         />
         <Icon
@@ -51,6 +100,7 @@ const CharacterText: React.FC<ICharacterTextProps> = props => {
           icon={'Check'}
           onClick={handleEndEdit}
         />
+        <p className={cls('max-w-160 h-12 mt-2 select-none', { 'hidden ': edit }, className)}>{textValue}</p>
       </div>
     </div>
   )

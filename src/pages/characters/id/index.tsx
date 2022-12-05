@@ -19,11 +19,26 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
   if (!character)
     return <div className={'text-3xl font-semibold text-white ml-10 mt-10'}>Не найден персонаж с таким id :(</div>
 
-  const { id, name } = character
+  const { id, name, race } = character
 
   return (
     <Page className={'p-10'}>
-      <CharacterText className={'text-white text-3xl font-bold w-fit'} characterId={id} value={name} valueKey={'name'} label={'Имя'}/>
+      <div className={'flex gap-10'}>
+        <CharacterText
+          className={'text-white text-3xl font-bold w-fit'}
+          characterId={id}
+          initialValue={name}
+          valueKey={'name'}
+          label={'Имя'}
+        />
+        <CharacterText
+          className={'text-white text-3xl font-bold w-fit'}
+          characterId={id}
+          initialValue={race}
+          valueKey={'race'}
+          label={'Раса'}
+        />
+      </div>
     </Page>
   )
 }

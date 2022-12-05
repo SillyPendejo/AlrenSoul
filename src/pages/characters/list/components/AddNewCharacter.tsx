@@ -14,7 +14,7 @@ const ListAddNewCharacter: React.FC<IListAddNewCharacterProps> = props => {
     onAddCharacter()
   }
   return (
-    <div className={'w-100 text-lg text-teal-500 cursor-pointer hover:(scale)'} onClick={handleClick}>
+    <div className={'w-100 text-lg text-teal-500 select-none cursor-pointer hover:(scale)'} onClick={handleClick}>
       Добавить нового персонажа +
     </div>
   )
