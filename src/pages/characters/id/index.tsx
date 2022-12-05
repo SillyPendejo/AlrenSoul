@@ -39,6 +39,22 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
           label={'Раса'}
         />
       </div>
+      {/* <div className={'flex gap-10'}>
+        <CharacterText
+          className={'text-white text-3xl font-bold w-fit'}
+          characterId={id}
+          initialValue={name}
+          valueKey={'name'}
+          label={'Имя'}
+        />
+        <CharacterText
+          className={'text-white text-3xl font-bold w-fit'}
+          characterId={id}
+          initialValue={race}
+          valueKey={'race'}
+          label={'Раса'}
+        />
+      </div> */}
     </Page>
   )
 }

@@ -34,9 +34,16 @@ const useCharacter = () => {
   const addCharacter = () => {
     const characterId = uuid().slice(0, 8)
     const emptyCharacter: Character = {
-      name: 'Новый персонаж',
-      race: 'Раса',
-      id: characterId
+      id: characterId,
+      name: "Новый персонаж",
+      race: "Раса",
+      health: 0,
+      armor: 0,
+      strength: 0,
+      dexterity: 0,
+      charisma: 0,
+      intelligence: 0,
+      endurance: 0
     }
     const characterList = [...getCharacters(), emptyCharacter]
     console.log('characterList: ', characterList)

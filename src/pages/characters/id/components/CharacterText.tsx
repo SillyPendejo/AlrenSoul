@@ -5,6 +5,7 @@ import cls from 'classnames'
 import { TextInput } from '~components'
 import Icon from '~svg'
 import { Character } from '~types'
+import { toNumber } from 'lodash'
 
 export interface ICharacterTextProps {
   className: string
@@ -47,7 +48,11 @@ const CharacterText: React.FC<ICharacterTextProps> = props => {
         event.preventDefault()
         const resetValue = getCharacter(characterId)?.[valueKey] ?? initialValue
         setEdit(false)
-        setTextValue(resetValue)
+        if (typeof resetValue === 'string') {
+          setTextValue(resetValue)
+        } else if (typeof resetValue === 'number') {
+          setTextValue(resetValue.toString())
+        }
     }
   }
 
