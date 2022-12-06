@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
+import Icon from '~svg'
 import { uuid } from '~utils/index'
 
 const navigation = [
@@ -13,7 +14,7 @@ const navigation = [
 const Navigation = () => {
   return (
     <>
-      <div className={'p-6 flex flex-col h-screen bg-teal-900 bg-opacity-10 gap-10 text-xl '}>
+      <div className={'p-6 flex relative flex-col h-screen bg-teal-900 bg-opacity-10 gap-10 text-xl '}>
         {navigation.map(item => {
           const { name, path } = item
           return (
