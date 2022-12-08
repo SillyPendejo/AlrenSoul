@@ -18,13 +18,13 @@ const Navigation = () => {
         {navigation.map(item => {
           const { name, path } = item
           return (
-            <Link key={path} className={'no-underline hover:(scale)'} to={path} title={name}>
+            <Link key={path} className={'no-underline hover:(scale) select-none'} to={path} title={name}>
               <p className={'text-white font-semibold'}>{name}</p>
             </Link>
           )
         })}
         <a
-          className={'no-underline hover:(scale)'}
+          className={'no-underline hover:(scale) select-none'}
           href={'https://docs.google.com/document/d/1vkRXUlUhQfK_n9pQ8-XV-Uf3BXWyCKDN'}
           title={'Рулбук'}
           target="_blank"

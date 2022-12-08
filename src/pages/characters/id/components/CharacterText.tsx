@@ -5,7 +5,6 @@ import cls from 'classnames'
 import { TextInput } from '~components'
 import Icon from '~svg'
 import { Character } from '~types'
-import { toNumber } from 'lodash'
 
 export interface ICharacterTextProps {
   className: string
@@ -15,7 +14,7 @@ export interface ICharacterTextProps {
   label: string
 }
 
-const CharacterText: React.FC<ICharacterTextProps> = props => {
+const IdPageCharacterText: React.FC<ICharacterTextProps> = props => {
   const { className, characterId, initialValue, valueKey, label } = props
   const [edit, setEdit] = useState(false)
   const [textValue, setTextValue] = useState(initialValue)
@@ -62,39 +61,17 @@ const CharacterText: React.FC<ICharacterTextProps> = props => {
     setTextValue(value)
   }
 
-  const renderText = () => {
-    if (edit) {
-      return (
-        <>
-          <TextInput
-            className={cls('w-50 h-12 border-b-1 border-white mt-0.5', className)}
-            value={textValue}
-            inputRef={inputRef}
-            onKeyDown={handleKeyDown}
-            onChange={handleChange}
-          />
-          <Icon
-            className={cls('cursor-pointer text-emerald-500 h-8 w-8 ml-2 hover:(scale-big)', { 'hidden ': !edit })}
-            icon={'Check'}
-            onClick={handleEndEdit}
-          />
-        </>
-      )
-    }
-    return
-  }
-
   return (
     <div className={'flex flex-col items-start w-fit'}>
       <div className={'flex items-center'}>
-        <p className={'text-lg text-white select-none'}>{label}</p>
+        <p className={'text-lg text-neutral-400 select-none'}>{label}</p>
         <div className={'p-2 cursor-pointer group'} onClick={handleStartEdit}>
-          <Icon className={' text-white h-4 w-4 group-hover:(scale-big)'} icon={'Edit'} />
+          <Icon className={' text-neutral-400 h-4 w-4 group-hover:(scale-big)'} icon={'Edit'} />
         </div>
       </div>
-      <div className={cls('flex w-fit items-end')}>
+      <div className={cls('flex w-fit items-center')}>
         <TextInput
-          className={cls('w-50 h-12 border-b-1 border-white mt-0.5', { 'hidden ': !edit }, className)}
+          className={cls('w-50 h-12 border-b-1 border-white', { 'hidden ': !edit }, className)}
           value={textValue}
           inputRef={inputRef}
           onKeyDown={handleKeyDown}
@@ -111,4 +88,4 @@ const CharacterText: React.FC<ICharacterTextProps> = props => {
   )
 }
 
-export default CharacterText
+export default IdPageCharacterText

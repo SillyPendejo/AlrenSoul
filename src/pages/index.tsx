@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate, RoutesProps } from 'react-router-dom'
 
 import { default as CharactersPage } from './characters'
 
-const MainRouter = () => {
+export interface IMainRouterProps extends RoutesProps {}
+
+const MainRouter: React.FC<IMainRouterProps> = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
 

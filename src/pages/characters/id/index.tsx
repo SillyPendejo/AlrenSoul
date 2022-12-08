@@ -2,7 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Page } from '~components'
 import { useCharacter } from '~hooks'
-import { CharacterText } from './components'
+import Icon from '~svg'
+import { CharacterText, Stat } from './components'
 
 export interface ICharactersIdPageProps {}
 
@@ -22,39 +23,31 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
   const { id, name, race } = character
 
   return (
-    <Page className={'p-10'}>
+    <Page className={'p-10 h-screen w-full overflow-y-scroll'}>
       <div className={'flex gap-10'}>
         <CharacterText
-          className={'text-white text-3xl font-bold w-fit'}
+          className={'text-white text-2xl font-semibold w-fit'}
           characterId={id}
           initialValue={name}
           valueKey={'name'}
           label={'Имя'}
         />
         <CharacterText
-          className={'text-white text-3xl font-bold w-fit'}
+          className={'text-white text-2xl font-semibold w-fit'}
           characterId={id}
           initialValue={race}
           valueKey={'race'}
           label={'Раса'}
         />
       </div>
-      {/* <div className={'flex gap-10'}>
-        <CharacterText
-          className={'text-white text-3xl font-bold w-fit'}
-          characterId={id}
-          initialValue={name}
-          valueKey={'name'}
-          label={'Имя'}
-        />
-        <CharacterText
-          className={'text-white text-3xl font-bold w-fit'}
-          characterId={id}
-          initialValue={race}
-          valueKey={'race'}
-          label={'Раса'}
-        />
-      </div> */}
+      <div className={'mt-5 text-xl tracking-wider text-neutral-400 select-none'}>Характеристики</div>
+      <div className={'flex flex-col gap-5 pt-6'}>
+        <Stat name={'СИЛ'} initialValue={0}  />
+        <Stat name={'ЛОВ'} initialValue={0}  />
+        <Stat name={'ИНТ'} initialValue={0}  />
+        <Stat name={'ХАР'} initialValue={0}  />
+        <Stat name={'ВЫН'} initialValue={0}  />
+      </div>
     </Page>
   )
 }
