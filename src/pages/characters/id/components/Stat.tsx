@@ -68,7 +68,7 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
         <Icon
           className={cls('w-5 h-5 text-slate-500 transform -rotate-90 cursor-pointer', {
             'hover:(scale-big -rotate-90 text-emerald-500) active:(text-emerald-800)': value < 6,
-            'hover:(scale-big text-fuchsia-500) active:(text-fuchsia-400)': value === 6
+            'hover:(scale-big -rotate-90 text-fuchsia-500) active:(text-fuchsia-400)': value === 6
           })}
           icon="Arrow"
           onClick={handleLevelUp}
