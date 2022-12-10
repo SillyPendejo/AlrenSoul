@@ -20,7 +20,7 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
   if (!character)
     return <div className={'text-3xl font-semibold text-white ml-10 mt-10'}>Не найден персонаж с таким id :(</div>
 
-  const { id, name, race } = character
+  const { id, name, race, strength, dexterity, intelligence, charisma, endurance } = character
 
   return (
     <Page className={'p-10 h-screen w-full overflow-y-scroll'}>
@@ -42,11 +42,11 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
       </div>
       <div className={'mt-5 text-xl tracking-wider text-neutral-400 select-none'}>Характеристики</div>
       <div className={'flex flex-col gap-5 pt-6'}>
-        <Stat name={'СИЛ'} initialValue={0}  />
-        <Stat name={'ЛОВ'} initialValue={0}  />
-        <Stat name={'ИНТ'} initialValue={0}  />
-        <Stat name={'ХАР'} initialValue={0}  />
-        <Stat name={'ВЫН'} initialValue={0}  />
+        <Stat name={'СИЛ'} characterId={id} initialValue={strength} valueKey={'strength'} />
+        <Stat name={'ЛОВ'} characterId={id} initialValue={dexterity} valueKey={'dexterity'}/>
+        <Stat name={'ИНТ'} characterId={id} initialValue={intelligence} valueKey={'intelligence'}/>
+        <Stat name={'ХАР'} characterId={id} initialValue={charisma} valueKey={'charisma'}/>
+        <Stat name={'ВЫН'} characterId={id} initialValue={endurance} valueKey={'endurance'}/>
       </div>
     </Page>
   )

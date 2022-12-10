@@ -35,8 +35,8 @@ const useCharacter = () => {
     const characterId = uuid().slice(0, 8)
     const emptyCharacter: Character = {
       id: characterId,
-      name: "Новый персонаж",
-      race: "Раса",
+      name: 'Новый персонаж',
+      race: 'Раса',
       health: 0,
       armor: 0,
       strength: 0,
@@ -46,13 +46,12 @@ const useCharacter = () => {
       endurance: 0
     }
     const characterList = [...getCharacters(), emptyCharacter]
-    console.log('characterList: ', characterList)
     localStorage.setItem('AltrenCharacterList', JSON.stringify(characterList))
     setCharacters(characterList)
     return characterId
   }
 
-  const setCharacterField = (id: string, value: string, valueKey: keyof Character) => {
+  const setCharacterField = (id: string, value: string | number, valueKey: keyof Character) => {
     const character = getCharacter(id)
     const updatedCharacter = {
       ...character,

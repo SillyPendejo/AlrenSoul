@@ -2,23 +2,31 @@ import React, { useCallback, useMemo, useState } from 'react'
 import Icon from '~svg'
 import cls from 'classnames'
 
+import { Character } from '~types'
+import { useCharacter } from '~hooks'
+
 export interface IdPageStatProps {
+  characterId: string
   initialValue: number
   name: 'СИЛ' | 'ЛОВ' | 'ИНТ' | 'ХАР' | 'ВЫН'
+  valueKey: keyof Character
 }
 
 const IdPageStat: React.FC<IdPageStatProps> = props => {
-  const { initialValue, name } = props
+  const { characterId, initialValue, name, valueKey } = props
+  const { setCharacterField } = useCharacter()
   const [value, setValue] = useState(initialValue)
 
   const handleLevelUp = () => {
     if (value > 5) return
     setValue(value + 1)
+    setCharacterField(characterId, value + 1, valueKey)
   }
 
   const handleLevelDown = () => {
     if (value < 1) return
     setValue(value - 1)
+    setCharacterField(characterId, value - 1, valueKey)
   }
 
   const diceColor = useMemo(
