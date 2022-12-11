@@ -104,9 +104,9 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
           <Icon
             className={cls('w-5 h-5 text-slate-500 text-white transform rotate-90', {
               'hover:(scale-big rotate-90 text-red-500) cursor-pointer active:(text-red-800)': edit
-                ? currentMaxHealth > 0
+                ? currentMaxHealth > 1
                 : currentHealth > 0,
-              'hover:(rotate-90) cursor-not-allowed': edit ? currentMaxHealth === 0 : currentHealth === 0
+              'hover:(rotate-90) cursor-not-allowed': edit ? currentMaxHealth === 1 : currentHealth === 0
             })}
             icon="Arrow"
             onClick={handleArrowDown}

@@ -39,7 +39,7 @@ const useCharacter = () => {
       race: 'Раса',
       health: 4,
       maxHealth: 4,
-      armor: 0,
+      armor: 4,
       strength: 0,
       dexterity: 0,
       charisma: 0,
