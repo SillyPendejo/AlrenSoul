@@ -3,6 +3,7 @@ export type Character = {
   name: string
   race: string
   health: number
+  maxHealth: number
   armor: number
   strength: number
   dexterity: number

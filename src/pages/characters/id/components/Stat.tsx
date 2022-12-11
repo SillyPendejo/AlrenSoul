@@ -70,9 +70,6 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
   return (
     <div className={'flex items-center gap-5 transition ease-in'}>
       <div className={'flex flex-col justify-center'}>
-        {/* <p className={'text-xl text-white font-bold cursor-pointer select-none'} onClick={handleLevelUp}>
-          +
-        </p> */}
         <Icon
           className={cls('w-5 h-5 text-slate-500 transform -rotate-90 cursor-pointer', {
             'hover:(scale-big -rotate-90 text-emerald-500) active:(text-emerald-800)': value < 6,
@@ -93,7 +90,6 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
       <div className={'text-xl text-white font-semibold select-none w-12'}>{name}</div>
       <div className={'text-2xl text-white font-semibold select-none w-4'}>{value}</div>
       <div className={'flex items-center gap-3'}>
-        {/* <span className={'text-white text-xl font-bold'}>d</span> */}
         <div className={'relative'}>
           {renderZeroLevelModifier()}
           <Icon className={cls('w-9 h-9', diceColor)} icon={dice()} />
