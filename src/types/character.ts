@@ -5,6 +5,9 @@ export type Character = {
   health: number
   maxHealth: number
   armor: number
+  maxArmor: number
+  energy: number
+  maxEnergy: number
   strength: number
   dexterity: number
   charisma: number

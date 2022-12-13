@@ -66,7 +66,7 @@ const IdPageCharacterText: React.FC<ICharacterTextProps> = props => {
       <div className={'flex items-center'}>
         <p className={'text-lg text-neutral-400 select-none'}>{label}</p>
         <div className={'p-2 cursor-pointer group'} onClick={handleStartEdit}>
-          <Icon className={' text-neutral-400 h-4 w-4 group-hover:(scale-big)'} icon={'Edit'} />
+          <Icon className={' text-neutral-400 transition-all ease-out h-4 w-4 group-hover:(scale-big)'} icon={'Edit'} />
         </div>
       </div>
       <div className={cls('flex w-fit items-center')}>

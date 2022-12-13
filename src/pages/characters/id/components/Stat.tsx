@@ -68,7 +68,7 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
   }, [value])
 
   return (
-    <div className={'flex items-center gap-5 transition ease-in'}>
+    <div className={'flex items-center gap-5 transition ease-in w-fit py-5'}>
       <div className={'flex flex-col justify-center'}>
         <Icon
           className={cls('w-5 h-5 text-slate-500 transform -rotate-90 cursor-pointer', {

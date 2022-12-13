@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Page } from '~components'
 import { useCharacter } from '~hooks'
-import { CharacterText, Stat, Health, Armor } from './components'
+import { CharacterText, Stat, Health, Armor, Energy } from './components'
 import cls from 'classnames'
 import Icon from '~svg'
 
@@ -21,7 +21,22 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
   if (!character)
     return <div className={'text-3xl font-semibold text-white ml-10 mt-10'}>Не найден персонаж с таким id :(</div>
 
-  const { id, name, race, strength, dexterity, intelligence, charisma, endurance, health, maxHealth, armor } = character
+  const {
+    id,
+    name,
+    race,
+    strength,
+    dexterity,
+    intelligence,
+    charisma,
+    endurance,
+    health,
+    maxHealth,
+    armor,
+    maxArmor,
+    energy,
+    maxEnergy
+  } = character
 
   return (
     <Page className={'p-10 h-screen w-full overflow-y-scroll'}>
@@ -42,11 +57,12 @@ const CharactersIdPage: React.FC<ICharactersIdPageProps> = () => {
         />
       </div>
       <div className={'flex gap-10'}>
-        <Armor characterId={id} armor={armor} />
+        <Armor characterId={id} armor={armor} maxArmor={maxArmor} />
         <Health characterId={id} health={health} maxHealth={maxHealth} />
+        <Energy characterId={id} energy={energy} maxEnergy={maxEnergy} />
       </div>
       <div className={'mt-5 text-xl tracking-wider text-neutral-400 select-none'}>Характеристики</div>
-      <div className={'flex flex-col gap-5 pt-6'}>
+      <div className={'flex flex-col pt-6 divide-y-3 divide-slate-100/10 '}>
         <Stat name={'СИЛ'} characterId={id} initialValue={strength} valueKey={'strength'} />
         <Stat name={'ЛОВ'} characterId={id} initialValue={dexterity} valueKey={'dexterity'} />
         <Stat name={'ИНТ'} characterId={id} initialValue={intelligence} valueKey={'intelligence'} />

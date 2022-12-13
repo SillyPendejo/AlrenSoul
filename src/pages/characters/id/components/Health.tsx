@@ -11,14 +11,16 @@ export interface IdPageStatProps {
   maxHealth: number
 }
 
-const IdPageStat: React.FC<IdPageStatProps> = props => {
+const IdPageHealth: React.FC<IdPageStatProps> = props => {
   const { characterId, health, maxHealth } = props
   const { setCharacterField } = useCharacter()
   const [currentHealth, setCurrentHealth] = useState(health)
   const [currentMaxHealth, setCurrentMaxHealth] = useState(maxHealth)
   const [edit, setEdit] = useState(false)
 
-  const stars = [...Array(currentMaxHealth).keys()]
+  const hearts = [...Array(currentMaxHealth).keys()]
+
+  const handleEditToggle = () => setEdit(!edit)
 
   const handleEditStart = () => setEdit(true)
 
@@ -28,9 +30,9 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
     setCurrentMaxHealth(currentMaxHealth + 1)
     setCharacterField(characterId, currentMaxHealth + 1, 'maxHealth')
     if (currentMaxHealth + 1 > currentHealth) {
-        setCurrentHealth(currentMaxHealth + 1)
-        setCharacterField(characterId, currentMaxHealth + 1, 'health')
-      }
+      setCurrentHealth(currentMaxHealth + 1)
+      setCharacterField(characterId, currentMaxHealth + 1, 'health')
+    }
   }
 
   const handleMaxHealthDown = () => {
@@ -60,37 +62,30 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
   const handleArrowDown = edit ? handleMaxHealthDown : handleHealthDown
 
   const renderHearts = () => {
-    return stars.map((star, index) => {
+    return hearts.map((_, index) => {
       const isFull = index <= currentHealth - 1
       return <Icon className={cls('w-8 h-8 text-red-500')} icon={isFull ? 'Heart' : 'HeartEmpty'} />
     })
   }
 
-  const renderMaxHealth = () => {
-    if (!edit) return
-
-    return (
-      <>
-        <Icon
-          className={cls('cursor-pointer text-emerald-500 h-8 w-8 mr-2 hover:(scale-big)', { 'hidden ': !edit })}
-          icon={'Check'}
-          onClick={handleEditEnd}
-        />
-      </>
-    )
-  }
-
   return (
     <div>
       <div className={'flex items-center mb-3'}>
-        <p className={'text-lg text-neutral-400 select-none mr-1'}>Здоровье</p>
+        <p className={'text-lg text-neutral-400 select-none mr-2'}>Здоровье</p>
         <Icon
+          className={
+            'text-neutral-400 cursor-pointer h-6 w-6 transition-all ease-in hover:(scale-bigg) active:(text-neutral-500)'
+          }
+          icon={edit ? 'ToggleOn' : 'ToggleOff'}
+          onClick={handleEditToggle}
+        />
+        {/* <Icon
           className={
             'text-neutral-400 cursor-pointer h-4 w-4 mb-2 transition-all ease-in-out hover:(scale-big rotate-45) active:(text-neutral-500)'
           }
           icon={'Settings'}
           onClick={handleEditStart}
-        />
+        /> */}
       </div>
       <div className={'flex items-center transition ease-in'}>
         <div className={'flex flex-col justify-center mr-2'}>
@@ -113,14 +108,18 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
           />
         </div>
         <p
-          className={cls('text-3xl text-center text-white font-semibold select-none w-10 mr-1', {
-            'opacity-30': edit
+          className={cls('text-3xl text-center text-white font-semibold select-none w-10 mr-1 cursor-pointer', {
+            'text-gray-600': edit
           })}
+          onClick={handleEditEnd}
         >
           {currentHealth}
         </p>
-        <span className={'mr-3 text-3xl text-white font-semibold select-none opacity-30'}>/</span>
-        <div className={cls('text-3xl text-white font-semibold select-none w-10 mr-3', { 'opacity-30': !edit })}>
+        <span className={'mr-3 text-3xl text-white font-semibold select-none text-gray-600'}>/</span>
+        <div
+          className={cls('text-3xl text-white font-semibold select-none w-10 mr-1 cursor-pointer', { 'text-gray-600': !edit })}
+          onClick={handleEditStart}
+        >
           {currentMaxHealth}
         </div>
         <div className={'flex items-center gap-3'}>
@@ -131,4 +130,4 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
   )
 }
 
-export default IdPageStat
+export default IdPageHealth
