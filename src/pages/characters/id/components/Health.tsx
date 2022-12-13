@@ -27,6 +27,10 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
   const handleMaxHealthUp = () => {
     setCurrentMaxHealth(currentMaxHealth + 1)
     setCharacterField(characterId, currentMaxHealth + 1, 'maxHealth')
+    if (currentMaxHealth + 1 > currentHealth) {
+        setCurrentHealth(currentMaxHealth + 1)
+        setCharacterField(characterId, currentMaxHealth + 1, 'health')
+      }
   }
 
   const handleMaxHealthDown = () => {
@@ -67,10 +71,6 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
 
     return (
       <>
-        <div className={cls('text-3xl text-white font-semibold select-none w-15', { 'mr-3': edit })}>
-          <span className={'opacity-30 mr-3'}>/</span>
-          {currentMaxHealth}
-        </div>
         <Icon
           className={cls('cursor-pointer text-emerald-500 h-8 w-8 mr-2 hover:(scale-big)', { 'hidden ': !edit })}
           icon={'Check'}
@@ -113,14 +113,16 @@ const IdPageStat: React.FC<IdPageStatProps> = props => {
           />
         </div>
         <p
-          className={cls('text-3xl text-center text-white font-semibold select-none w-10', {
-            'mr-3': !edit,
-            'opacity-30 mr-1': edit
+          className={cls('text-3xl text-center text-white font-semibold select-none w-10 mr-1', {
+            'opacity-30': edit
           })}
         >
           {currentHealth}
         </p>
-        {renderMaxHealth()}
+        <span className={'mr-3 text-3xl text-white font-semibold select-none opacity-30'}>/</span>
+        <div className={cls('text-3xl text-white font-semibold select-none w-10 mr-3', { 'opacity-30': !edit })}>
+          {currentMaxHealth}
+        </div>
         <div className={'flex items-center gap-3'}>
           <div className={'relative flex items-center max-w-150'}>{renderHearts()}</div>
         </div>
